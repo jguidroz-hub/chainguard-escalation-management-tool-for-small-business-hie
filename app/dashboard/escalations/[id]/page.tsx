@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-interface Escalations/[id]Item {
+interface EscalationsDetailItem
   id: string;
   title?: string;
   status?: string;
@@ -10,8 +10,8 @@ interface Escalations/[id]Item {
   [key: string]: any;
 }
 
-export default function Escalations/[id]Page() {
-  const [items, setItems] = useState<Escalations/[id]Item[]>([]);
+export default function EscalationsDetailPage
+  const [items, setItems] = useState<EscalationsDetailItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [showCreate, setShowCreate] = useState(false);
   const [newTitle, setNewTitle] = useState('');
@@ -39,7 +39,7 @@ export default function Escalations/[id]Page() {
   };
 
   const handleDelete = async (id: string) => {
-    await fetch(`/api/escalations/[id]/${id}`, { method: 'DELETE' });
+    await fetch(`/ApiEscalationsDetail/${id}`, { method: 'DELETE' });
     setItems(prev => prev.filter(i => i.id !== id));
   };
 
