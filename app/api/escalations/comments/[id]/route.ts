@@ -12,7 +12,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ id: str
   const { id } = await params;
 
   const [item] = await db.select().from(escalationComments)
-    .where(and(eq(escalationComments.id, id), eq(eescalationCommentsuserId, session.user.id)))
+    .where(and(eq(escalationComments.id, id), eq(escalationComments, session.user.id)))
     .limit(1);
 
   if (!item) return NextResponse.json({ error: 'Not found' }, { status: 404 });
@@ -27,7 +27,7 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
 
   const [updated] = await db.update(escalationComments)
     .set({ ...body, updatedAt: new Date() })
-    .where(and(eq(escalationComments.id, id), eq(eescalationCommentsuserId, session.user.id)))
+    .where(and(eq(escalationComments.id, id), eq(escalationComments, session.user.id)))
     .returning();
 
   if (!updated) return NextResponse.json({ error: 'Not found' }, { status: 404 });
@@ -40,7 +40,7 @@ export async function DELETE(_req: Request, { params }: { params: Promise<{ id: 
   const { id } = await params;
 
   await db.delete(escalationComments)
-    .where(and(eq(escalationComments.id, id), eq(eescalationCommentsuserId, session.user.id)));
+    .where(and(eq(escalationComments.id, id), eq(escalationComments, session.user.id)));
 
   return NextResponse.json({ success: true });
 }
