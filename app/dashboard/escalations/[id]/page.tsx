@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-interface EscalationsDetailItem
+interface EscalationsDetailItem {
   id: string;
   title?: string;
   status?: string;
@@ -10,7 +10,7 @@ interface EscalationsDetailItem
   [key: string]: any;
 }
 
-export default function EscalationsDetailPage
+export default function EscalationsDetailPage() {
   const [items, setItems] = useState<EscalationsDetailItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [showCreate, setShowCreate] = useState(false);
