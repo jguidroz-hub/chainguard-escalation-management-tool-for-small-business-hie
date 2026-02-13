@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { db } from '@/lib/db';
-import { escalationsComments } from '@/lib/domain-schema';
+import { escalationComments } from '@/lib/domain-schema';
 import { eq, and } from 'drizzle-orm';
 
 export const runtime = 'nodejs';
