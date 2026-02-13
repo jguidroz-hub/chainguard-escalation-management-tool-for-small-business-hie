@@ -11,8 +11,8 @@ export async function GET(_req: Request, { params }: { params: Promise<{ id: str
   if (!session?.user?.id) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const { id } = await params;
 
-  const [item] = await db.select().from(EscalationsComments)
-    .where(and(eq(EscalationsComments.id, id), eq(eEscalationsCommentsuserId, session.user.id)))
+  const [item] = await db.select().from(escalationComments)
+    .where(and(eq(escalationComments.id, id), eq(eescalationCommentsuserId, session.user.id)))
     .limit(1);
 
   if (!item) return NextResponse.json({ error: 'Not found' }, { status: 404 });
@@ -25,9 +25,9 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
   const { id } = await params;
   const body = await req.json();
 
-  const [updated] = await db.update(EscalationsComments)
+  const [updated] = await db.update(escalationComments)
     .set({ ...body, updatedAt: new Date() })
-    .where(and(eq(EscalationsComments.id, id), eq(eEscalationsCommentsuserId, session.user.id)))
+    .where(and(eq(escalationComments.id, id), eq(eescalationCommentsuserId, session.user.id)))
     .returning();
 
   if (!updated) return NextResponse.json({ error: 'Not found' }, { status: 404 });
@@ -39,8 +39,8 @@ export async function DELETE(_req: Request, { params }: { params: Promise<{ id: 
   if (!session?.user?.id) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   const { id } = await params;
 
-  await db.delete(EscalationsComments)
-    .where(and(eq(EscalationsComments.id, id), eq(eEscalationsCommentsuserId, session.user.id)));
+  await db.delete(escalationComments)
+    .where(and(eq(escalationComments.id, id), eq(eescalationCommentsuserId, session.user.id)));
 
   return NextResponse.json({ success: true });
 }
