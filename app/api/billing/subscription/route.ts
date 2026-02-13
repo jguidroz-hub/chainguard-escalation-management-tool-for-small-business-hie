@@ -33,7 +33,7 @@ export async function GET() {
       subscription: {
         id: sub.id,
         status: sub.status,
-        priceId: sub.priceId,
+        priceId: sub.stripePriceId,
         currentPeriodEnd: sub.currentPeriodEnd?.toISOString(),
         cancelAtPeriodEnd: sub.cancelAtPeriodEnd,
         trialEnd: sub.trialEnd?.toISOString(),
